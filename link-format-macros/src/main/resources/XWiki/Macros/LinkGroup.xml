@@ -342,11 +342,7 @@ Please contact the administrator to allow to create a link to this website.
 """
     }
 } else {
-    println """{{html clean="false"}}&lt;a href="${XMLUtils.escape(uri.toString())}"&gt;{{/html}}
-
-{{wikimacrocontent/}}
-
-{{html clean="false"}}&lt;/a&gt;{{/html}}"""
+    println """{{html clean="false"}}&lt;a href="${XMLUtils.escape(uri.toString())}"&gt;{{/html}}{{wikimacrocontent/}}{{html clean="false"}}&lt;/a&gt;{{/html}}"""
 }
 {{/groovy}}
 </code>
@@ -376,7 +372,7 @@ Please contact the administrator to allow to create a link to this website.
       <priority/>
     </property>
     <property>
-      <supportsInlineMode>0</supportsInlineMode>
+      <supportsInlineMode>1</supportsInlineMode>
     </property>
     <property>
       <visibility>Current Wiki</visibility>
