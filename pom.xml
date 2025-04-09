@@ -50,5 +50,6 @@
   </scm>
   <modules>
     <module>link-format-macros</module>
+    <module>link-format-macros-api</module>
   </modules>
 </project>

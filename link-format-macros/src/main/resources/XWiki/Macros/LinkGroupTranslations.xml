@@ -39,7 +39,9 @@
   <content>rendering.macro.link-group.name=Link group
 rendering.macro.link-group.description=Make an group of element clickable
 rendering.macro.link-group.parameter.reference.name=Reference
-rendering.macro.link-group.parameter.reference.description=The link to point with the clickable macro. Can be a document reference or a http link.</content>
+rendering.macro.link-group.parameter.reference.description=The link to point with the clickable macro. Can be a document reference or a http link.
+org.xwiki.contrib.link-format.invalid-uri-error.header=Link group error
+org.xwiki.contrib.link-format.invalid-uri-error.description=You are not allowed to create a link to {0} for security reason. Please contact the administrator to allow to create a link to this website.</content>
   <object>
     <name>XWiki.Macros.LinkGroupTranslations</name>
     <number>0</number>

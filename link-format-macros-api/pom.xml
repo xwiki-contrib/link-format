@@ -26,36 +26,54 @@
     <artifactId>link-format</artifactId>
     <version>1.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>link-format-macros</artifactId>
-  <packaging>xar</packaging>
-  <name>Link format macros UI</name>
-  <description>Set of macro to format link UI.</description>
+  <artifactId>link-format-macros-api</artifactId>
+  <packaging>jar</packaging>
+  <name>Link format macros API</name>
+  <description>Set of macro to format link API.</description>
   <properties>
-    <xwiki.extension.name>Link format macros UI</xwiki.extension.name>
+    <xwiki.extension.name>Link format macros API</xwiki.extension.name>
+    <xwiki.extension.components>
+      org.xwiki.rendering.macro.Macro/link-group
+    </xwiki.extension.components>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.xwiki.platform</groupId>
-      <artifactId>xwiki-platform-rendering-macro-velocity</artifactId>
+      <artifactId>xwiki-platform-model-api</artifactId>
       <version>${platform.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.xwiki.platform</groupId>
-      <artifactId>xwiki-platform-rendering-macro-code</artifactId>
-      <version>${platform.version}</version>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.xwiki.rendering</groupId>
-      <artifactId>xwiki-rendering-macro-html</artifactId>
+      <artifactId>xwiki-rendering-transformation-macro</artifactId>
       <version>${rendering.version}</version>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.xwiki.contrib.link-format</groupId>
-      <artifactId>link-format-macros-api</artifactId>
-      <version>${project.version}</version>
+      <groupId>org.xwiki.platform</groupId>
+      <artifactId>xwiki-platform-url-api</artifactId>
+      <version>${platform.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.xwiki.platform</groupId>
+      <artifactId>xwiki-platform-oldcore</artifactId>
+      <version>${platform.version}</version>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <!-- Apply the Checkstyle configurations defined in the top level pom.xml file -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <executions>
+          <execution>
+            <!-- Specify the "default" execution id so that the "blocker" one is always executed -->
+            <id>default</id>
+            <configuration>
+              <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
