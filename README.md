@@ -4,7 +4,7 @@ Set of macros to create link with different style.
 
 * Project Lead: [Josué Tille](https://www.xwiki.org/xwiki/bin/view/XWiki/JosueTille)
 * Documentation & Downloads: [Documentation & Download](https://extensions.xwiki.org/xwiki/bin/view/Extension/Link%20format%20macros/)
-* [Issue Tracker](https://jira.xwiki.org/browse/LINKFORMAT
+* [Issue Tracker](https://jira.xwiki.org/browse/LINKFORMAT)
 * Communication: [Forum](https://forum.xwiki.org/), [Chat](https://dev.xwiki.org/xwiki/bin/view/Community/Chat)
 * [Development Practices](https://dev.xwiki.org)
 * Minimal XWiki version supported: 16.10
