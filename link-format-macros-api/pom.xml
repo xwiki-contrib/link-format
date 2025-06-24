@@ -35,6 +35,7 @@
     <xwiki.extension.components>
       org.xwiki.rendering.macro.Macro/link-group
     </xwiki.extension.components>
+    <xwiki.extension.category>macro</xwiki.extension.category>
   </properties>
   <dependencies>
     <dependency>

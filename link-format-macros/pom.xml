@@ -32,6 +32,7 @@
   <description>Set of macro to format link UI.</description>
   <properties>
     <xwiki.extension.name>Link format macros UI</xwiki.extension.name>
+    <xwiki.extension.category>macro</xwiki.extension.category>
   </properties>
   <dependencies>
     <dependency>
