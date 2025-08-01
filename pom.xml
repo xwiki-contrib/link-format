@@ -30,7 +30,7 @@
   <artifactId>link-format</artifactId>
   <packaging>pom</packaging>
   <name>Link format - Parent POM</name>
-  <version>1.1.1-SNAPSHOT</version>
+  <version>1.1.1</version>
   <properties>
     <xwiki.release.jira.skip>false</xwiki.release.jira.skip>
     <!-- If the project is hosted on http://jira.xwiki.org, only the id needs to be provided. -->
@@ -46,7 +46,7 @@
     <connection>scm:git:git://github.com/xwiki-contrib/link-format.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/link-format.git</developerConnection>
     <url>https://github.com/xwiki-contrib/link-format/tree/master</url>
-    <tag>HEAD</tag>
+    <tag>link-format-1.1.1</tag>
   </scm>
   <modules>
     <module>link-format-macros</module>
