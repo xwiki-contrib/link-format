@@ -50,6 +50,7 @@ import org.xwiki.rendering.macro.descriptor.DefaultContentDescriptor;
 import org.xwiki.rendering.syntax.Syntax;
 import org.xwiki.rendering.syntax.SyntaxType;
 import org.xwiki.rendering.transformation.MacroTransformationContext;
+import org.xwiki.script.ScriptContextManager;
 import org.xwiki.security.authorization.ContextualAuthorizationManager;
 import org.xwiki.security.authorization.Right;
 import org.xwiki.url.URLSecurityManager;
@@ -102,6 +103,9 @@ public class LinkGroup extends AbstractMacro<LinkGroupParameters>
 
     @Inject
     private ContextualAuthorizationManager contextualAuthorizationManager;
+
+    @Inject
+    private ScriptContextManager scriptContextManager;
 
     /**
      * Create and initialize the descriptor of the macro.
@@ -177,11 +181,7 @@ public class LinkGroup extends AbstractMacro<LinkGroupParameters>
                 macroContent = List.of();
             }
 
-            Syntax syntax = context.getTransformationContext().getTargetSyntax();
-            SyntaxType targetSyntaxType = syntax == null ? null : syntax.getType();
-            if (SyntaxType.ANNOTATED_HTML.equals(targetSyntaxType) || SyntaxType.ANNOTATED_XHTML.equals(
-                targetSyntaxType))
-            {
+            if (isEdit(context)) {
                 Block macroEditableContent = new MetaDataBlock(macroContent, getNonGeneratedContentMetaData());
 
                 // Don't mark as link in edit mode to avoid the WYSIWYG convert all content as link
@@ -205,6 +205,25 @@ public class LinkGroup extends AbstractMacro<LinkGroupParameters>
                         new RawBlock(END_LINK, Syntax.HTML_5_0));
                 }
             }
+        }
+    }
+
+    private boolean isEdit(MacroTransformationContext context)
+    {
+        // By default, we use the recommended solution cf:
+        // https://www.xwiki.org/xwiki/bin/view/FAQ/How%20to%20write%20Macro%20code%20for%20the%20edit%20mode
+        // And if we are in the version impacted by https://jira.xwiki.org/browse/XWIKI-22738
+        // We fall back on the suggested solution by this comment:
+        // https://jira.xwiki.org/browse/XWIKI-22738?focusedId=120587&
+        //     page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-120587
+        Syntax syntax = context.getTransformationContext().getTargetSyntax();
+        if (syntax == null) {
+            String syntaxStr = (String) scriptContextManager.getScriptContext().getAttribute("syntaxType");
+            return (syntaxStr != null) && (syntaxStr.equals("annotatedhtml") || syntaxStr.equals("annotatedxhtml"));
+        } else {
+            SyntaxType targetSyntaxType = syntax.getType();
+            return (SyntaxType.ANNOTATED_HTML.equals(targetSyntaxType)
+                || SyntaxType.ANNOTATED_XHTML.equals(targetSyntaxType));
         }
     }
 }
